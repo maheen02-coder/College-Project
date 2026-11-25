@@ -3,6 +3,8 @@ import { ArrowLeft, BadgeCheck, CalendarDays, ShieldCheck, Sparkles, Trophy } fr
 import Brand from "@/components/ui/Brand";
 import { getInstitute } from "@/lib/queries";
 
+export const dynamic = "force-dynamic";
+
 const FEATURES = [
   { icon: CalendarDays, title: "Every campus moment", body: "Events, workshops and cultural nights curated by your college." },
   { icon: Trophy, title: "Compete and climb", body: "Enter solo or team competitions, track results and win certificates." },
