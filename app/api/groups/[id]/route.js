@@ -65,7 +65,7 @@ export async function GET(request, { params }) {
   );
   if (!group) return fail("Group not found.", 404);
 
-  const membership = await GroupMember.findOne({ group: group._id, user: user.id }).lean();
+  const membership = await GroupMember.findOne({ group: group._id, user: user.id });
   const isMember =
     Boolean(membership) || (group.memberIds || []).some((value) => String(value) === String(user.id));
   const adminAccess = isAdmin(user) && hasAdminPermission(user, "manage_groups");
