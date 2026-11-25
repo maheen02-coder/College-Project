@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#06060f"/>
+      <stop offset="0.55" stop-color="#065f46"/>
+      <stop offset="1" stop-color="#0e7490"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#a78bfa" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#a78bfa" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="shade" x1="0" y1="380" x2="0" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#05060f" stop-opacity="0"/>
+      <stop offset="0.65" stop-color="#05060f" stop-opacity="0.72"/>
+      <stop offset="1" stop-color="#05060f" stop-opacity="0.92"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.05"/></feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <circle cx="220" cy="260" r="300" fill="url(#glowA)" opacity="0.85"/><circle cx="1020" cy="840" r="260" fill="url(#glowB)" opacity="0.75"/><circle cx="600" cy="480" r="420" fill="none" stroke="#ffffff" stroke-opacity="0.09" stroke-width="1.4"/><circle cx="600" cy="480" r="300" fill="none" stroke="#ffffff" stroke-opacity="0.07" stroke-width="1"/><path d="M-100 980 Q 320 520 760 940 T 1320 760" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1.5"/><path d="M-60 1060 Q 380 640 820 1010 T 1360 860" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
+  <circle cx="60" cy="90" r="2.6" fill="#ffffff" opacity="0.32"/><circle cx="197" cy="301" r="1.5" fill="#ffffff" opacity="0.16"/><circle cx="334" cy="512" r="1.5" fill="#ffffff" opacity="0.16"/><circle cx="471" cy="723" r="1.5" fill="#ffffff" opacity="0.32"/><circle cx="608" cy="234" r="1.5" fill="#ffffff" opacity="0.16"/><circle cx="745" cy="445" r="2.6" fill="#ffffff" opacity="0.16"/><circle cx="882" cy="656" r="1.5" fill="#ffffff" opacity="0.32"/><circle cx="1019" cy="167" r="1.5" fill="#ffffff" opacity="0.16"/><circle cx="76" cy="378" r="1.5" fill="#ffffff" opacity="0.16"/><circle cx="213" cy="589" r="1.5" fill="#ffffff" opacity="0.32"/><circle cx="350" cy="100" r="2.6" fill="#ffffff" opacity="0.16"/><circle cx="487" cy="311" r="1.5" fill="#ffffff" opacity="0.16"/><circle cx="624" cy="522" r="1.5" fill="#ffffff" opacity="0.32"/><circle cx="761" cy="733" r="1.5" fill="#ffffff" opacity="0.16"/><circle cx="898" cy="244" r="1.5" fill="#ffffff" opacity="0.16"/><circle cx="1035" cy="455" r="2.6" fill="#ffffff" opacity="0.32"/><circle cx="92" cy="666" r="1.5" fill="#ffffff" opacity="0.16"/><circle cx="229" cy="177" r="1.5" fill="#ffffff" opacity="0.16"/><circle cx="366" cy="388" r="1.5" fill="#ffffff" opacity="0.32"/><circle cx="503" cy="599" r="1.5" fill="#ffffff" opacity="0.16"/><circle cx="640" cy="110" r="2.6" fill="#ffffff" opacity="0.16"/><circle cx="777" cy="321" r="1.5" fill="#ffffff" opacity="0.32"/><circle cx="914" cy="532" r="1.5" fill="#ffffff" opacity="0.16"/><circle cx="1051" cy="743" r="1.5" fill="#ffffff" opacity="0.16"/><circle cx="108" cy="254" r="1.5" fill="#ffffff" opacity="0.32"/><circle cx="245" cy="465" r="2.6" fill="#ffffff" opacity="0.16"/>
+  <rect width="1200" height="900" fill="url(#shade)"/>
+  <rect width="1200" height="900" filter="url(#grain)" fill="none"/>
+  <g transform="translate(84,110)">
+    <rect x="0" y="0" width="46" height="46" rx="14" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.24"/>
+    <text x="23" y="31" text-anchor="middle" font-family="Sora, sans-serif" font-size="22" font-weight="700" fill="#ffffff">K</text>
+    <text x="62" y="20" font-family="Inter, sans-serif" font-size="15" font-weight="600" fill="#ffffff" letter-spacing="0.5">KIPS COLLEGE</text>
+    <text x="62" y="38" font-family="Inter, sans-serif" font-size="10.5" fill="#ffffff" fill-opacity="0.62" letter-spacing="3">CAMPUS EVENT HUB</text>
+  </g>
+  <g transform="translate(84,190)">
+    <rect x="0" y="0" width="150" height="34" rx="17" fill="#ffffff" fill-opacity="0.1" stroke="#ffffff" stroke-opacity="0.26"/>
+    <text x="75" y="22" text-anchor="middle" font-family="Inter, sans-serif" font-size="12.5" font-weight="600" fill="#e9e6ff" letter-spacing="1.6">SPORTS</text>
+  </g>
+  <text x="84" y="760" font-family="Sora, Inter, sans-serif" font-size="88" font-weight="700" fill="#ffffff" letter-spacing="-2">Winter Sports</text><text x="84" y="849.76" font-family="Sora, Inter, sans-serif" font-size="88" font-weight="700" fill="#ffffff" letter-spacing="-2">Gala</text>
+  <g transform="translate(84,945.52)">
+    <rect x="0" y="0" width="64" height="3" rx="1.5" fill="#c4b5fd"/>
+    <text x="80" y="8" font-family="Inter, sans-serif" font-size="13" fill="#ffffff" fill-opacity="0.7" letter-spacing="4">KIPS SPORTS COMPLEX</text>
+  </g>
+</svg>
