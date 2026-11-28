@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, CalendarDays, MapPin, Trophy, Users2 } from "lucide-react";
 import TiltCard from "@/components/ui/TiltCard";
 import StatusBadge from "@/components/ui/StatusBadge";
+import LazyImage from "@/components/ui/LazyImage";
 import { formatDate } from "@/lib/utils";
 
 export default function CompetitionCard({ competition, className = "" }) {
@@ -16,10 +17,10 @@ export default function CompetitionCard({ competition, className = "" }) {
       <article className="card card-hover group flex h-full flex-col overflow-hidden">
         <Link href={`/competitions/${competition.slug}`} className="relative block aspect-[16/9] overflow-hidden bg-lavender">
           {competition.poster ? (
-            <img
+            <LazyImage
               src={competition.poster}
               alt={competition.title}
-              loading="lazy"
+              sizes="(min-width: 1280px) 300px, (min-width: 1024px) 33vw, (min-width: 640px) 46vw, 92vw"
               className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
             />
           ) : (

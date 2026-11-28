@@ -183,7 +183,7 @@ export default function AdminAttendancePage() {
       render: (row) => (
         <div className="flex items-center gap-2.5">
           {row.user?.avatar ? (
-            <img src={row.user.avatar} alt="" className="h-8 w-8 rounded-full object-cover" />
+            <img loading="lazy" decoding="async" src={row.user.avatar} alt="" className="h-8 w-8 rounded-full object-cover" />
           ) : (
             <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-lilac text-[0.66rem] font-semibold text-purple">
               {initials(row.user?.name || "?")}
@@ -379,7 +379,7 @@ export default function AdminAttendancePage() {
                 {qr ? (
                   <div className="space-y-3">
                     <div className="mx-auto w-full max-w-[14rem] rounded-2xl border border-line bg-white p-3">
-                      <img src={qr.qr} alt="Event check-in QR code" className="h-auto w-full" />
+                      <img loading="lazy" decoding="async" src={qr.qr} alt="Event check-in QR code" className="h-auto w-full" />
                     </div>
                     <p className="break-all rounded-lg bg-lavender px-2.5 py-2 font-mono text-[0.64rem] leading-relaxed text-ink-2">{qr.url}</p>
                     <div className="flex gap-2">

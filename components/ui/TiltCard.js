@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import usePrefersReducedMotion from "@/components/ui/usePrefersReducedMotion";
 
 export default function TiltCard({
   children,
@@ -11,7 +12,7 @@ export default function TiltCard({
   radius = "1.25rem",
 }) {
   const ref = useRef(null);
-  const reduced = useReducedMotion();
+  const reduced = usePrefersReducedMotion();
   const x = useMotionValue(0.5);
   const y = useMotionValue(0.5);
 

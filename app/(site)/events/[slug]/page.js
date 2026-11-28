@@ -18,6 +18,7 @@ import CancelRegistration from "@/components/site/CancelRegistration";
 import Countdown from "@/components/site/Countdown";
 import EventCard from "@/components/site/EventCard";
 import CopyButton from "@/components/ui/CopyButton";
+import LazyImage from "@/components/ui/LazyImage";
 import Reveal from "@/components/ui/Reveal";
 import { getSessionUser } from "@/lib/auth";
 import { getEventDetail } from "@/lib/content";
@@ -102,7 +103,13 @@ export default async function EventDetailPage({ params }) {
             <div className="relative">
               <div className="overflow-hidden rounded-[1.6rem] border border-white bg-white shadow-[0_35px_70px_-40px_rgba(23,19,50,0.5)]">
                 {event.poster ? (
-                  <img src={event.poster} alt={event.title} className="aspect-[16/11] w-full object-cover" />
+                  <LazyImage
+                    priority
+                    src={event.poster}
+                    alt={event.title}
+                    sizes="(min-width: 1024px) 660px, 92vw"
+                    className="aspect-[16/11] w-full object-cover"
+                  />
                 ) : (
                   <div className="aspect-[16/11] w-full bg-gradient-to-br from-[#ddd6fe] via-[#e0e7ff] to-[#bfdbfe]" />
                 )}
@@ -172,7 +179,13 @@ export default async function EventDetailPage({ params }) {
               <h2 className="font-display text-lg font-bold text-ink">Event gallery</h2>
               <div className="mt-4 grid gap-3 sm:grid-cols-3">
                 {raw.gallery.map((image) => (
-                  <img key={image} src={image} alt="" loading="lazy" className="h-36 w-full rounded-xl object-cover" />
+                  <LazyImage
+                    key={image}
+                    src={image}
+                    alt=""
+                    sizes="(min-width: 640px) 33vw, 92vw"
+                    className="h-36 w-full rounded-xl object-cover"
+                  />
                 ))}
               </div>
             </Reveal>
@@ -187,7 +200,13 @@ export default async function EventDetailPage({ params }) {
                     <p className="text-[0.85rem] font-semibold text-ink">{gallery.title}</p>
                     <div className="mt-2 grid gap-2 sm:grid-cols-4">
                       {(gallery.images || []).slice(0, 4).map((image) => (
-                        <img key={image} src={image} alt="" loading="lazy" className="h-20 w-full rounded-lg object-cover" />
+                        <LazyImage
+                          key={image}
+                          src={image}
+                          alt=""
+                          sizes="(min-width: 640px) 25vw, 46vw"
+                          className="h-20 w-full rounded-lg object-cover"
+                        />
                       ))}
                     </div>
                   </div>

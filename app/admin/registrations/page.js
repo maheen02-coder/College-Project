@@ -184,7 +184,7 @@ export default function AdminRegistrationsPage() {
       render: (row) => (
         <div className="flex items-center gap-2.5">
           {row.user?.avatar ? (
-            <img src={row.user.avatar} alt="" className="h-8 w-8 rounded-full object-cover" />
+            <img loading="lazy" decoding="async" src={row.user.avatar} alt="" className="h-8 w-8 rounded-full object-cover" />
           ) : (
             <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-lilac text-[0.66rem] font-semibold text-purple">
               {initials(row.user?.name || "?")}

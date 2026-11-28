@@ -17,7 +17,11 @@ export const metadata = {
     "The official KIPS College campus platform — discover events, join societies, apply to recruitment drives, compete, chat with your team and collect verified certificates.",
   keywords: ["KIPS College", "campus events", "societies", "competitions", "certificates", "student portal"],
   icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/kips%20logo.png", type: "image/png", sizes: "447x447" },
+    ],
+    apple: [{ url: "/kips%20logo.png", sizes: "447x447" }],
   },
 };
 

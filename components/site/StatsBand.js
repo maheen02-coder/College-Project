@@ -1,4 +1,5 @@
 import StatCounter from "@/components/site/StatCounter";
+import Reveal from "@/components/ui/Reveal";
 
 export default function StatsBand({ stats = {} }) {
   const items = [
@@ -11,8 +12,10 @@ export default function StatsBand({ stats = {} }) {
 
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-      {items.map((item) => (
-        <StatCounter key={item.key} value={item.value} label={item.label} icon={item.icon} />
+      {items.map((item, index) => (
+        <Reveal key={item.key} delay={index * 0.06} y={18} className="h-full">
+          <StatCounter value={item.value} label={item.label} icon={item.icon} />
+        </Reveal>
       ))}
     </div>
   );

@@ -192,7 +192,7 @@ export default function StudentOverviewPage() {
               <Link href={`/events/${nextUp.event.slug}`} className="group flex flex-col gap-4 p-5 sm:flex-row sm:items-center">
                 <span className="relative h-28 w-full shrink-0 overflow-hidden rounded-2xl bg-lavender sm:h-20 sm:w-28">
                   {nextUp.event.poster ? (
-                    <img src={nextUp.event.poster} alt="" className="h-full w-full object-cover" />
+                    <img loading="lazy" decoding="async" src={nextUp.event.poster} alt="" className="h-full w-full object-cover" />
                   ) : (
                     <span className="grid h-full w-full place-items-center text-purple">
                       <CalendarDays size={24} />

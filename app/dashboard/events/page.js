@@ -150,7 +150,7 @@ export default function MyEventsPage() {
                     className="relative h-24 w-full shrink-0 overflow-hidden rounded-xl bg-lavender sm:h-16 sm:w-24"
                   >
                     {event.poster ? (
-                      <img src={event.poster} alt="" className="h-full w-full object-cover" />
+                      <img loading="lazy" decoding="async" src={event.poster} alt="" className="h-full w-full object-cover" />
                     ) : (
                       <span className="grid h-full w-full place-items-center text-purple">
                         <CalendarDays size={20} />

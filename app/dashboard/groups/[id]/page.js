@@ -23,7 +23,7 @@ import { formatDate, formatDateTime, initials } from "@/lib/utils";
 
 function Avatar({ person, size = "h-8 w-8 text-[0.62rem]" }) {
   return person?.avatar ? (
-    <img src={person.avatar} alt="" className={`${size} shrink-0 rounded-full object-cover`} />
+    <img loading="lazy" decoding="async" src={person.avatar} alt="" className={`${size} shrink-0 rounded-full object-cover`} />
   ) : (
     <span className={`${size} grid shrink-0 place-items-center rounded-full bg-gradient-to-br from-violet-600 to-blue-600 font-bold text-white`}>
       {initials(person?.name || "?")}

@@ -196,7 +196,7 @@ export default function ProfilePage() {
             <div className="space-y-4 p-5">
               <div className="flex items-center gap-3 rounded-xl border border-line bg-lavender/40 px-3.5 py-3">
                 {form.avatar ? (
-                  <img src={form.avatar} alt="" className="h-12 w-12 rounded-full object-cover" />
+                  <img loading="lazy" decoding="async" src={form.avatar} alt="" className="h-12 w-12 rounded-full object-cover" />
                 ) : (
                   <span className="grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-violet-600 to-blue-600 text-sm font-bold text-white">
                     {initials(form.name || user.name)}

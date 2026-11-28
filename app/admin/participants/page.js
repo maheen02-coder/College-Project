@@ -114,7 +114,7 @@ export default function AdminParticipantsPage() {
       render: (row) => (
         <div className="flex items-center gap-2.5">
           {row.avatar ? (
-            <img src={row.avatar} alt="" className="h-8 w-8 rounded-full object-cover" />
+            <img loading="lazy" decoding="async" src={row.avatar} alt="" className="h-8 w-8 rounded-full object-cover" />
           ) : (
             <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-lilac text-[0.66rem] font-semibold text-purple">
               {initials(row.name)}

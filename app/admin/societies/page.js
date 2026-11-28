@@ -71,7 +71,7 @@ function MiniSwitch({ checked, onChange, label, disabled }) {
 function SocietyMark({ society, size = "md" }) {
   const box = size === "sm" ? "h-8 w-8 text-[0.68rem]" : "h-11 w-11 text-[0.78rem]";
   if (society.logo) {
-    return <img src={society.logo} alt="" className={cn("shrink-0 rounded-xl border border-line object-cover", box)} />;
+    return <img loading="lazy" decoding="async" src={society.logo} alt="" className={cn("shrink-0 rounded-xl border border-line object-cover", box)} />;
   }
   return (
     <span

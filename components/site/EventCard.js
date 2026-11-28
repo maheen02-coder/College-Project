@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CalendarDays, MapPin, Users } from "lucide-react";
 import TiltCard from "@/components/ui/TiltCard";
 import StatusBadge from "@/components/ui/StatusBadge";
+import LazyImage from "@/components/ui/LazyImage";
 import RegisterButton from "@/components/site/RegisterButton";
 import { formatDate, formatTime, pct } from "@/lib/utils";
 
@@ -18,10 +19,10 @@ export default function EventCard({ event, isAuthed = false, compact = false, cl
       <article className="card card-hover group relative flex h-full flex-col overflow-hidden">
         <Link href={`/events/${event.slug}`} className="relative block aspect-[16/10] overflow-hidden bg-lavender">
           {event.poster ? (
-            <img
+            <LazyImage
               src={event.poster}
               alt={event.title}
-              loading="lazy"
+              sizes="(min-width: 1024px) 400px, (min-width: 640px) 46vw, 92vw"
               className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
             />
           ) : (

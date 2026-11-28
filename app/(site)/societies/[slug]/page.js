@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import EventCard from "@/components/site/EventCard";
 import CompetitionCard from "@/components/site/CompetitionCard";
+import LazyImage from "@/components/ui/LazyImage";
 import Reveal from "@/components/ui/Reveal";
 import StatusBadge from "@/components/ui/StatusBadge";
 import { getSessionUser } from "@/lib/auth";
@@ -42,7 +43,9 @@ export default async function SocietyDetailPage({ params }) {
     <div>
       <section className="relative overflow-hidden border-b border-line">
         <div className="h-44 w-full sm:h-56" style={{ background: `linear-gradient(120deg, ${accent}, #2563eb)` }}>
-          {society.cover ? <img src={society.cover} alt="" className="h-full w-full object-cover opacity-90" /> : null}
+          {society.cover ? (
+            <LazyImage priority src={society.cover} alt="" sizes="100vw" className="h-full w-full object-cover opacity-90" />
+          ) : null}
         </div>
         <div className="container-x relative pb-8">
           <div className="-mt-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -51,7 +54,7 @@ export default async function SocietyDetailPage({ params }) {
                 className="grid h-24 w-24 shrink-0 place-items-center overflow-hidden rounded-3xl border-4 border-white text-2xl font-bold text-white shadow-[0_20px_40px_-20px_rgba(23,19,50,0.6)]"
                 style={{ background: `linear-gradient(135deg, ${accent}, #2563eb)` }}
               >
-                {society.logo ? <img src={society.logo} alt="" className="h-full w-full object-cover" /> : initials(society.name)}
+                {society.logo ? <img loading="lazy" decoding="async" src={society.logo} alt="" className="h-full w-full object-cover" /> : initials(society.name)}
               </span>
               <div className="pb-1">
                 <div className="flex flex-wrap items-center gap-2">
@@ -117,7 +120,7 @@ export default async function SocietyDetailPage({ params }) {
                 {leadership.map((leader) => (
                   <div key={leader.id} className="flex items-center gap-3 rounded-xl border border-line px-3.5 py-3">
                     <span className="grid h-10 w-10 place-items-center overflow-hidden rounded-full bg-lilac text-[0.74rem] font-bold text-purple">
-                      {leader.avatar ? <img src={leader.avatar} alt="" className="h-full w-full object-cover" /> : initials(leader.name)}
+                      {leader.avatar ? <img loading="lazy" decoding="async" src={leader.avatar} alt="" className="h-full w-full object-cover" /> : initials(leader.name)}
                     </span>
                     <div className="min-w-0">
                       <p className="truncate text-[0.85rem] font-semibold text-ink">{leader.name}</p>
@@ -173,7 +176,13 @@ export default async function SocietyDetailPage({ params }) {
               <div className="mt-4 grid gap-3 sm:grid-cols-3">
                 {gallery.map((item) =>
                   (item.images?.length ? item.images.slice(0, 2) : [item.cover]).filter(Boolean).map((image) => (
-                    <img key={`${item.id}-${image}`} src={image} alt={item.title} loading="lazy" className="h-32 w-full rounded-xl object-cover" />
+                    <LazyImage
+                      key={`${item.id}-${image}`}
+                      src={image}
+                      alt={item.title}
+                      sizes="(min-width: 640px) 33vw, 92vw"
+                      className="h-32 w-full rounded-xl object-cover"
+                    />
                   ))
                 )}
               </div>
@@ -235,7 +244,7 @@ export default async function SocietyDetailPage({ params }) {
               <div className="mt-3 grid grid-cols-6 gap-2">
                 {generalMembers.slice(0, 12).map((member) => (
                   <span key={member.id} className="grid h-9 w-9 place-items-center overflow-hidden rounded-full bg-lilac text-[0.62rem] font-bold text-purple" title={member.name}>
-                    {member.avatar ? <img src={member.avatar} alt="" className="h-full w-full object-cover" /> : initials(member.name)}
+                    {member.avatar ? <img loading="lazy" decoding="async" src={member.avatar} alt="" className="h-full w-full object-cover" /> : initials(member.name)}
                   </span>
                 ))}
               </div>

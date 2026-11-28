@@ -3,6 +3,7 @@ import { Megaphone, Pin } from "lucide-react";
 import PageHeader from "@/components/site/PageHeader";
 import UpdateCard from "@/components/site/UpdateCard";
 import EmptyState from "@/components/site/EmptyState";
+import LazyImage from "@/components/ui/LazyImage";
 import Reveal from "@/components/ui/Reveal";
 import { getUpdatesFeed } from "@/lib/content";
 import { ANNOUNCEMENT_CATEGORIES } from "@/lib/constants";
@@ -96,7 +97,7 @@ export default async function UpdatesPage({ searchParams }) {
                   <h2 className="mt-4 font-display text-2xl font-bold leading-tight text-ink">{featured.title}</h2>
                   <p className="mt-3 whitespace-pre-line text-[0.9rem] leading-relaxed text-ink-2/90">{featured.body}</p>
                   {featured.image ? (
-                    <img src={featured.image} alt="" className="mt-4 max-h-64 w-full rounded-xl object-cover" />
+                    <LazyImage src={featured.image} alt="" sizes="(min-width: 1024px) 720px, 92vw" className="mt-4 max-h-64 w-full rounded-xl object-cover" />
                   ) : null}
                   <p className="mt-5 text-[0.74rem] text-mist">
                     {featured.society?.name || featured.publishedByName || "Campus office"} ·{" "}

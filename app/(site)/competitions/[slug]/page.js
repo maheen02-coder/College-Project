@@ -17,6 +17,7 @@ import Countdown from "@/components/site/Countdown";
 import CompetitionEntryPanel from "@/components/site/CompetitionEntryPanel";
 import CompetitionCard from "@/components/site/CompetitionCard";
 import CopyButton from "@/components/ui/CopyButton";
+import LazyImage from "@/components/ui/LazyImage";
 import Reveal from "@/components/ui/Reveal";
 import { getSessionUser } from "@/lib/auth";
 import { getCompetitionDetail } from "@/lib/content";
@@ -98,7 +99,13 @@ export default async function CompetitionDetailPage({ params }) {
 
             <div className="overflow-hidden rounded-[1.6rem] border border-white bg-white shadow-[0_35px_70px_-40px_rgba(23,19,50,0.5)]">
               {competition.poster ? (
-                <img src={competition.poster} alt={competition.title} className="aspect-[16/11] w-full object-cover" />
+                <LazyImage
+                  priority
+                  src={competition.poster}
+                  alt={competition.title}
+                  sizes="(min-width: 1024px) 660px, 92vw"
+                  className="aspect-[16/11] w-full object-cover"
+                />
               ) : (
                 <div className="aspect-[16/11] w-full bg-gradient-to-br from-[#e9e3ff] via-[#e0e7ff] to-[#dbeafe]" />
               )}
@@ -158,7 +165,7 @@ export default async function CompetitionDetailPage({ params }) {
                     <span className="w-6 text-center text-[0.72rem] font-bold text-mist">{index + 1}</span>
                     <span className="grid h-9 w-9 place-items-center overflow-hidden rounded-full bg-lilac text-[0.7rem] font-bold text-purple">
                       {entry.avatar ? (
-                        <img src={entry.avatar} alt="" className="h-full w-full object-cover" />
+                        <img loading="lazy" decoding="async" src={entry.avatar} alt="" className="h-full w-full object-cover" />
                       ) : (
                         initials(entry.name)
                       )}

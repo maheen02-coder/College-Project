@@ -57,7 +57,7 @@ export default async function RecruitmentDetailPage({ params }) {
                   style={{ background: `linear-gradient(135deg, ${accent}, #2563eb)` }}
                 >
                   {recruitment.society.logo ? (
-                    <img src={recruitment.society.logo} alt="" className="h-full w-full object-cover" />
+                    <img loading="lazy" decoding="async" src={recruitment.society.logo} alt="" className="h-full w-full object-cover" />
                   ) : (
                     initials(recruitment.society.name)
                   )}

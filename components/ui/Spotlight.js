@@ -15,23 +15,29 @@ export default function Spotlight() {
 
     const pos = { x: window.innerWidth / 2, y: window.innerHeight * 0.3 };
     const target = { ...pos };
-    let frame;
+    let frame = null;
+
+    const render = () => {
+      frame = null;
+      pos.x += (target.x - pos.x) * 0.08;
+      pos.y += (target.y - pos.y) * 0.08;
+      el.style.transform = `translate3d(${pos.x - 320}px, ${pos.y - 320}px, 0)`;
+      // Stop the loop once the glow reaches the pointer to save idle GPU work.
+      if (Math.abs(target.x - pos.x) + Math.abs(target.y - pos.y) > 0.1) {
+        frame = requestAnimationFrame(render);
+      }
+    };
+
+    const start = () => {
+      if (frame === null) frame = requestAnimationFrame(render);
+    };
 
     const onMove = (event) => {
       target.x = event.clientX;
       target.y = event.clientY;
       el.style.opacity = "1";
+      start();
     };
-
-    const render = () => {
-      pos.x += (target.x - pos.x) * 0.08;
-      pos.y += (target.y - pos.y) * 0.08;
-      el.style.transform = `translate3d(${pos.x - 320}px, ${pos.y - 320}px, 0)`;
-      frame = requestAnimationFrame(render);
-    };
-
-    render();
-    window.addEventListener("mousemove", onMove, { passive: true });
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener("mousemove", onMove);

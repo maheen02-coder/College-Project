@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
+import Magnetic from "@/components/ui/Magnetic";
 
 export default function SectionHeading({
   eyebrow,
@@ -14,6 +15,7 @@ export default function SectionHeading({
   const centered = align === "center";
   return (
     <Reveal
+      blur
       className={`flex flex-col gap-5 ${
         centered ? "items-center text-center" : "sm:flex-row sm:items-end sm:justify-between"
       } ${className}`}
@@ -28,13 +30,15 @@ export default function SectionHeading({
         ) : null}
       </div>
       {href ? (
-        <Link
-          href={href}
-          className="group inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-purple transition hover:gap-2.5"
-        >
-          {linkLabel}
-          <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
-        </Link>
+        <Magnetic strength={0.22} className="shrink-0">
+          <Link
+            href={href}
+            className="group inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-purple transition hover:gap-2.5"
+          >
+            {linkLabel}
+            <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
+          </Link>
+        </Magnetic>
       ) : null}
     </Reveal>
   );

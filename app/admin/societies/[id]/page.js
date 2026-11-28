@@ -54,7 +54,7 @@ const EMPTY_FORM = {
 
 function SocietyMark({ society }) {
   if (society?.logo) {
-    return <img src={society.logo} alt="" className="h-16 w-16 rounded-2xl border border-line bg-white object-cover" />;
+    return <img loading="lazy" decoding="async" src={society.logo} alt="" className="h-16 w-16 rounded-2xl border border-line bg-white object-cover" />;
   }
   return (
     <span
@@ -362,7 +362,7 @@ export default function AdminSocietyDetailPage() {
                       <td>
                         <div className="flex items-center gap-2.5">
                           {member.avatar ? (
-                            <img src={member.avatar} alt="" className="h-8 w-8 rounded-full border border-line object-cover" />
+                            <img loading="lazy" decoding="async" src={member.avatar} alt="" className="h-8 w-8 rounded-full border border-line object-cover" />
                           ) : (
                             <span className="grid h-8 w-8 place-items-center rounded-full bg-lavender text-[0.64rem] font-bold text-purple">
                               {initials(member.name)}

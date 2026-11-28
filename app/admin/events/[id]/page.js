@@ -234,7 +234,7 @@ export default function EventConsolePage() {
       render: (row) => (
         <div className="flex items-center gap-2.5">
           {row.user?.avatar ? (
-            <img src={row.user.avatar} alt="" className="h-8 w-8 rounded-full object-cover" />
+            <img loading="lazy" decoding="async" src={row.user.avatar} alt="" className="h-8 w-8 rounded-full object-cover" />
           ) : (
             <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-lilac text-[0.66rem] font-semibold text-purple">
               {initials(row.user?.name || "?")}
@@ -370,7 +370,7 @@ export default function EventConsolePage() {
           <Panel bodyClassName="p-5">
             <div className="flex flex-col gap-4 sm:flex-row">
               {item.poster ? (
-                <img src={item.poster} alt={item.title} className="h-36 w-full rounded-2xl border border-line object-cover sm:w-56" />
+                <img loading="lazy" decoding="async" src={item.poster} alt={item.title} className="h-36 w-full rounded-2xl border border-line object-cover sm:w-56" />
               ) : (
                 <div className="grid h-36 w-full place-items-center rounded-2xl bg-lavender text-purple sm:w-56">
                   <CalendarDays size={30} />
@@ -468,7 +468,7 @@ export default function EventConsolePage() {
             {qr ? (
               <div className="space-y-3">
                 <div className="mx-auto w-full max-w-[15rem] rounded-2xl border border-line bg-white p-3">
-                  <img src={qr.qr} alt="Event check-in QR code" className="h-auto w-full" />
+                  <img loading="lazy" decoding="async" src={qr.qr} alt="Event check-in QR code" className="h-auto w-full" />
                 </div>
                 <p className="break-all rounded-lg bg-lavender px-2.5 py-2 font-mono text-[0.64rem] leading-relaxed text-ink-2">{qr.url}</p>
                 <div className="flex gap-2">

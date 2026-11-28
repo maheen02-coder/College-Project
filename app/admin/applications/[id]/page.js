@@ -328,7 +328,7 @@ export default function AdminApplicationDetailPage() {
           <Panel title="Applicant" description="Academic profile recorded at application time.">
             <div className="flex flex-col gap-3 p-5 sm:flex-row sm:items-center">
               {applicant.avatar ? (
-                <img src={applicant.avatar} alt="" className="h-14 w-14 rounded-2xl border border-line object-cover" />
+                <img loading="lazy" decoding="async" src={applicant.avatar} alt="" className="h-14 w-14 rounded-2xl border border-line object-cover" />
               ) : (
                 <span className="grid h-14 w-14 place-items-center rounded-2xl bg-lavender text-[1rem] font-bold text-purple">
                   {initials(applicant.name || "")}

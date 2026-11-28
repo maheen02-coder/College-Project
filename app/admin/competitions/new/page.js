@@ -168,7 +168,7 @@ export function CompetitionContentFields({ form, set }) {
         <div>
           <span className="label">Preview</span>
           {form.poster ? (
-            <img src={form.poster} alt="Poster preview" className="h-24 w-full rounded-xl border border-line object-cover" />
+            <img loading="lazy" decoding="async" src={form.poster} alt="Poster preview" className="h-24 w-full rounded-xl border border-line object-cover" />
           ) : (
             <div className="grid h-24 w-full place-items-center rounded-xl border border-dashed border-line bg-lavender text-mist">
               <Trophy size={20} />

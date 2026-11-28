@@ -21,6 +21,8 @@ import RecruitmentCard from "@/components/site/RecruitmentCard";
 import StatsBand from "@/components/site/StatsBand";
 import CategoryGrid from "@/components/site/CategoryGrid";
 import Reveal from "@/components/ui/Reveal";
+import GateReveal from "@/components/ui/GateReveal";
+import LazyImage from "@/components/ui/LazyImage";
 import { getSessionUser } from "@/lib/auth";
 import { getHomeData } from "@/lib/content";
 import { EVENT_CATEGORIES } from "@/lib/constants";
@@ -226,7 +228,7 @@ export default async function HomePage() {
                     </span>
                     <span className="grid h-9 w-9 place-items-center overflow-hidden rounded-full bg-lilac text-[0.72rem] font-bold text-purple">
                       {student.avatar ? (
-                        <img src={student.avatar} alt="" className="h-full w-full object-cover" />
+                        <LazyImage src={student.avatar} alt="" sizes="36px" className="h-full w-full object-cover" />
                       ) : (
                         initials(student.name)
                       )}
@@ -300,30 +302,32 @@ export default async function HomePage() {
               title="Moments from campus"
               description="Relive the energy of recent events."
             />
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {galleries.slice(0, 3).map((gallery) => (
-                <Reveal key={gallery.id}>
-                  <div className="card group overflow-hidden">
-                    {gallery.cover ? (
-                      <img
-                        src={gallery.cover}
-                        alt={gallery.title}
-                        loading="lazy"
-                        className="h-52 w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                    ) : (
-                      <div className="h-52 w-full bg-gradient-to-br from-[#ddd6fe] to-[#bfdbfe]" />
-                    )}
-                    <div className="p-4">
-                      <p className="font-display text-[0.95rem] font-bold text-ink">{gallery.title}</p>
-                      <p className="mt-1 text-[0.72rem] text-mist">
-                        {gallery.society?.name || gallery.event?.title || "KIPS Campus"}
-                      </p>
+            <GateReveal className="mt-8">
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {galleries.slice(0, 3).map((gallery) => (
+                  <Reveal key={gallery.id}>
+                    <div className="card group overflow-hidden">
+                      {gallery.cover ? (
+                        <LazyImage
+                          src={gallery.cover}
+                          alt={gallery.title}
+                          sizes="(min-width: 1024px) 400px, (min-width: 640px) 48vw, 92vw"
+                          className="h-52 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className="h-52 w-full bg-gradient-to-br from-[#ddd6fe] to-[#bfdbfe]" />
+                      )}
+                      <div className="p-4">
+                        <p className="font-display text-[0.95rem] font-bold text-ink">{gallery.title}</p>
+                        <p className="mt-1 text-[0.72rem] text-mist">
+                          {gallery.society?.name || gallery.event?.title || "KIPS Campus"}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
+                  </Reveal>
+                ))}
+              </div>
+            </GateReveal>
           </div>
         </section>
       ) : null}

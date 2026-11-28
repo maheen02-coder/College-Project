@@ -28,9 +28,41 @@ export default function CursorFx() {
     let visible = false;
     let frame = null;
 
+    const settled = () => {
+      if (Math.abs(target.x - ringPos.x) + Math.abs(target.y - ringPos.y) > 0.1) return false;
+      return trailPos.every((pos) => Math.abs(target.x - pos.x) + Math.abs(target.y - pos.y) <= 0.1);
+    };
+
+    const render = () => {
+      frame = null;
+      ringPos.x += (target.x - ringPos.x) * 0.16;
+      ringPos.y += (target.y - ringPos.y) * 0.16;
+      ring.style.transform = `translate3d(${ringPos.x}px, ${ringPos.y}px, 0)`;
+      dot.style.transform = `translate3d(${target.x}px, ${target.y}px, 0)`;
+
+      let prevX = target.x;
+      let prevY = target.y;
+      trails.forEach((el, index) => {
+        const pos = trailPos[index];
+        pos.x += (prevX - pos.x) * (0.32 - index * 0.035);
+        pos.y += (prevY - pos.y) * (0.32 - index * 0.035);
+        prevX = pos.x;
+        prevY = pos.y;
+        el.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0)`;
+      });
+
+      // Idle frames cost GPU time on every page; stop once the ring has settled.
+      if (!settled()) frame = requestAnimationFrame(render);
+    };
+
+    const start = () => {
+      if (frame === null) frame = requestAnimationFrame(render);
+    };
+
     const onMove = (event) => {
       target.x = event.clientX;
       target.y = event.clientY;
+      start();
       if (!visible) {
         visible = true;
         ring.style.opacity = "1";
@@ -61,27 +93,6 @@ export default function CursorFx() {
       });
     };
 
-    const render = () => {
-      ringPos.x += (target.x - ringPos.x) * 0.16;
-      ringPos.y += (target.y - ringPos.y) * 0.16;
-      ring.style.transform = `translate3d(${ringPos.x}px, ${ringPos.y}px, 0)`;
-      dot.style.transform = `translate3d(${target.x}px, ${target.y}px, 0)`;
-
-      let prevX = target.x;
-      let prevY = target.y;
-      trails.forEach((el, index) => {
-        const pos = trailPos[index];
-        pos.x += (prevX - pos.x) * (0.32 - index * 0.035);
-        pos.y += (prevY - pos.y) * (0.32 - index * 0.035);
-        prevX = pos.x;
-        prevY = pos.y;
-        el.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0)`;
-      });
-
-      frame = requestAnimationFrame(render);
-    };
-
-    render();
     window.addEventListener("mousemove", onMove, { passive: true });
     window.addEventListener("mouseover", onOver, { passive: true });
     window.addEventListener("mouseout", onOut, { passive: true });

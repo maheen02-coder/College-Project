@@ -233,7 +233,7 @@ export default function CompetitionConsolePage() {
       render: (row) => (
         <div className="flex items-center gap-2">
           {row.user?.avatar ? (
-            <img src={row.user.avatar} alt="" className="h-7 w-7 rounded-full object-cover" />
+            <img loading="lazy" decoding="async" src={row.user.avatar} alt="" className="h-7 w-7 rounded-full object-cover" />
           ) : (
             <span className="grid h-7 w-7 place-items-center rounded-full bg-lilac text-[0.62rem] font-semibold text-purple">
               {initials(row.user?.name || "?")}
@@ -356,7 +356,7 @@ export default function CompetitionConsolePage() {
           <Panel bodyClassName="p-5">
             <div className="flex flex-col gap-4 sm:flex-row">
               {item.poster ? (
-                <img src={item.poster} alt={item.title} className="h-36 w-full rounded-2xl border border-line object-cover sm:w-56" />
+                <img loading="lazy" decoding="async" src={item.poster} alt={item.title} className="h-36 w-full rounded-2xl border border-line object-cover sm:w-56" />
               ) : (
                 <div className="grid h-36 w-full place-items-center rounded-2xl bg-lavender text-purple sm:w-56">
                   <Trophy size={30} />

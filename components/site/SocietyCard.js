@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, CalendarDays, Sparkles, Users } from "lucide-react";
+import LazyImage from "@/components/ui/LazyImage";
 import { initials } from "@/lib/utils";
 
 export default function SocietyCard({ society, className = "" }) {
@@ -13,10 +14,10 @@ export default function SocietyCard({ society, className = "" }) {
     >
       <div className="relative h-24 overflow-hidden">
         {society.cover ? (
-          <img
+          <LazyImage
             src={society.cover}
             alt=""
-            loading="lazy"
+            sizes="(min-width: 1024px) 300px, (min-width: 640px) 46vw, 92vw"
             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
         ) : (
@@ -40,7 +41,7 @@ export default function SocietyCard({ society, className = "" }) {
             style={{ background: `linear-gradient(135deg, ${accent}, #2563eb)` }}
           >
             {society.logo ? (
-              <img src={society.logo} alt="" className="h-full w-full object-cover" />
+              <img loading="lazy" decoding="async" src={society.logo} alt="" className="h-full w-full object-cover" />
             ) : (
               initials(society.name)
             )}

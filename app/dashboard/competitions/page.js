@@ -37,7 +37,7 @@ function EntryCard({ entry, onWithdraw }) {
     <article className="card overflow-hidden">
       <div className="relative h-32 w-full bg-gradient-to-br from-lilac via-lavender to-blue-50">
         {competition.poster ? (
-          <img src={competition.poster} alt="" className="h-full w-full object-cover" />
+          <img loading="lazy" decoding="async" src={competition.poster} alt="" className="h-full w-full object-cover" />
         ) : (
           <div className="grid h-full w-full place-items-center text-purple/70">
             <Trophy size={34} />

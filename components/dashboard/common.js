@@ -74,7 +74,7 @@ export function SocietyAvatar({ society, size = "md", className = "" }) {
       className={cn("grid shrink-0 place-items-center overflow-hidden border font-bold", sizes[size] || sizes.md, className)}
       style={{ backgroundColor: `${color}16`, borderColor: `${color}30`, color }}
     >
-      {society?.logo ? <img src={society.logo} alt="" className="h-full w-full object-cover" /> : initials(society?.name || "S")}
+      {society?.logo ? <img loading="lazy" decoding="async" src={society.logo} alt="" className="h-full w-full object-cover" /> : initials(society?.name || "S")}
     </span>
   );
 }

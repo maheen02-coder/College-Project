@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, Bell, Pin } from "lucide-react";
+import LazyImage from "@/components/ui/LazyImage";
 import { formatDate, timeAgo } from "@/lib/utils";
 
 const CATEGORY_LABEL = {
@@ -60,7 +61,7 @@ export default function UpdateCard({ update, featured = false, className = "" })
 
       {update.image ? (
         <div className="mt-3 overflow-hidden rounded-xl border border-line">
-          <img src={update.image} alt="" loading="lazy" className="h-36 w-full object-cover" />
+          <LazyImage src={update.image} alt="" sizes="(min-width: 1024px) 400px, (min-width: 640px) 46vw, 92vw" className="h-36 w-full object-cover" />
         </div>
       ) : null}
 
