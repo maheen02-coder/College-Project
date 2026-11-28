@@ -6,6 +6,11 @@ import { useEffect, useRef, useState } from "react";
 const WIDTHS = [256, 384, 640, 750, 828, 1080, 1200, 1920];
 const DEFAULT_SIZES = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 92vw";
 
+// Vercel's optimizer rejects the .jfif extension, so request the .jpg twin.
+function normalizedSrc(src) {
+  return typeof src === "string" ? src.replace(/\.jfif(\?.*)?$/i, ".jpg$1") : src;
+}
+
 function optimizedSrcSet(src) {
   if (typeof src !== "string" || !src.startsWith("/") || /\.svg($|\?)/i.test(src)) return undefined;
   const url = encodeURI(src.replace(/%20/gi, " "));
@@ -22,9 +27,12 @@ export default function LazyImage({
 }) {
   const ref = useRef(null);
   const [phase, setPhase] = useState("idle");
-  const srcSet = optimizedSrcSet(src);
+  const [unoptimized, setUnoptimized] = useState(false);
+  const resolvedSrc = normalizedSrc(src);
+  const srcSet = unoptimized ? undefined : optimizedSrcSet(resolvedSrc);
 
   useEffect(() => {
+    setUnoptimized(false);
     const img = ref.current;
     if (!img) return;
     if (img.complete && img.naturalWidth > 0) {
@@ -34,10 +42,18 @@ export default function LazyImage({
     }
   }, [src]);
 
+  const handleError = () => {
+    if (srcSet) {
+      setUnoptimized(true);
+      return;
+    }
+    setPhase("done");
+  };
+
   return (
     <img
       ref={ref}
-      src={src}
+      src={resolvedSrc}
       srcSet={srcSet}
       sizes={srcSet ? sizes : undefined}
       alt={alt}
@@ -46,7 +62,7 @@ export default function LazyImage({
       fetchPriority={priority ? "high" : "auto"}
       data-fade={phase === "pending" ? "pending" : undefined}
       onLoad={() => setPhase("done")}
-      onError={() => setPhase("done")}
+      onError={handleError}
       className={`lazy-img ${className}`}
       {...rest}
     />

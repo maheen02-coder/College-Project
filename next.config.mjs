@@ -6,6 +6,15 @@ const nextConfig = {
   images: {
     minimumCacheTTL: 604800,
   },
+  async headers() {
+    return [
+      {
+        // Legacy .jfif files are JPEG data; serve them with the right MIME type.
+        source: "/:path*.jfif",
+        headers: [{ key: "Content-Type", value: "image/jpeg" }],
+      },
+    ];
+  },
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },

@@ -213,7 +213,7 @@ export default function HeroHome({ nextEvent, stats = {}, openCompetitions = 0 }
               <div className="hero-frame relative overflow-hidden rounded-[1.9rem] border border-white/80 bg-white">
                 <LazyImage
                   priority
-                  src="/2campus.jfif"
+                  src="/2campus.jpg"
                   alt="KIPS College campus"
                   className="h-[330px] w-full object-cover sm:h-[380px]"
                   sizes="(min-width: 1024px) 540px, 92vw"
