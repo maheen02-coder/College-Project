@@ -37,6 +37,7 @@ import User from "@/lib/models/User";
 import Achievement from "@/lib/models/Achievement";
 
 export const dynamic = "force-dynamic";
+export const maxDuration = 300;
 
 const at = (days, hour = 10, minute = 0) => {
   const date = new Date();
@@ -417,13 +418,22 @@ export async function POST(request) {
     questionsByRecruitment[String(recruitment._id)] = created;
   }
 
-  await fs.mkdir(path.join(process.cwd(), ".data", "uploads"), { recursive: true });
-  await fs.writeFile(
-    path.join(process.cwd(), ".data", "uploads", "seed-ayesha-portfolio.txt"),
+  const writeSeedFile = async (name, contents) => {
+    try {
+      const dir = path.join(process.cwd(), ".data", "uploads");
+      await fs.mkdir(dir, { recursive: true });
+      await fs.writeFile(path.join(dir, name), contents);
+    } catch (err) {
+      // Serverless filesystems are read-only; seed data still references the files.
+      console.warn(`seed file write skipped for ${name}: ${err.code || err.message}`);
+    }
+  };
+  await writeSeedFile(
+    "seed-ayesha-portfolio.txt",
     "Ayesha Khan — Creative Portfolio\n\nPhotography, poetry and event production.\nCampus showcase: 'City in Light' photo series (2025).\nLiterary open mic performer, 2024-2026.\n\nContact: demo@kips.edu.pk"
   );
-  await fs.writeFile(
-    path.join(process.cwd(), ".data", "uploads", "seed-ayesha-cv.txt"),
+  await writeSeedFile(
+    "seed-ayesha-cv.txt",
     "Ayesha Khan\nKIPS-2024-001 · Intermediate Part II\n\nExperience: Quiz Society event manager, volunteer corps.\nSkills: public speaking, writing, event management."
   );
 
