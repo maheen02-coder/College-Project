@@ -136,6 +136,17 @@ export async function POST(request) {
     ].map((model) => model.deleteMany({}))
   );
 
+  // Replace the old unique+sparse roll-number index, which collides on empty strings.
+  try {
+    const legacyIndex = (await User.collection.indexes()).find(
+      (index) => index.name === "institute_1_matricRollNumber_1" && !index.partialFilterExpression
+    );
+    if (legacyIndex) await User.collection.dropIndex("institute_1_matricRollNumber_1");
+  } catch (err) {
+    console.warn("seed: roll-number index cleanup skipped:", err.code || err.message);
+  }
+  await User.createIndexes();
+
   const institute = await Institute.create({
     name: "KIPS College",
     shortName: "KIPS",
